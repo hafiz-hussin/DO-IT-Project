@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block style %}
+    <style>
+    .jumbotron {
+        background-image: url("https://s1.1zoom.me/big0/188/332158-alexfas01.jpg");
+        background-size: cover;
+        text-align: center;
+        color: white;
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+    <h1>DO-IT: Bantu Kami Untuk Bantu Anda</h1>
+    <p>DO-IT adalah satu platform bagi menjana "Duit" dengan membantu kami membuat tugasan-tugasan yang mudah tanpa perlu meninggalkan keselesaan rumah anda.
+        Aplikasi data ini adalah untuk perkongsian ilmu, mempromosi inisiatif digital dan menggalakkan penglibatan
+        komuniti dalam membangunkan ekonomi digital.</p>
+    </div>
+{% endblock %}
+
+{% block footer %}
+
+    <div class="container" style="text-align:center;">
+{#    <img src="{% static "img/kit/free/" %}" alt="My image">#}
+    </div>
+    <div class="container" style="text-align:center;">
+
+{#      <div class="col-md-8">#}
+{#      <div class="col-md-4">#}
+{#        <h2>Heading</h2>#}
+{#        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>#}
+{#        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>#}
+{#      </div>#}
+      <div class="col-md-12">
+          {% if request.user.is_authenticated %}
+          <h3>Hello {{ request.user }}! Welcome</h3>
+          {% else %}
+          <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            <div id="div_id_login" class="form-group bmd-form-group is-filled"> <label for="id_login" class="control-label requiredField bmd-label-static">
+                        Login<span class="asteriskField">*</span> </label> <div class="controls "> <input type="text" name="login" placeholder="Username or e-mail" autofocus="autofocus" class="textinput textInput form-control" required="" id="id_login"> </div> </div> <div id="div_id_password" class="form-group bmd-form-group is-filled"> <label for="id_password" class="control-label requiredField bmd-label-static">
+                        Password<span class="asteriskField">*</span> </label> <div class="controls "> <input type="password" name="password" placeholder="Password" class="textinput textInput form-control" required="" id="id_password"> </div> </div> <div class="form-group bmd-form-group is-filled"> <div id="div_id_remember" class="checkbox"> <label for="id_remember" class=""> <input type="checkbox" name="remember" class="checkboxinput" id="id_remember"><span class="checkbox-decorator"><span class="check"></span></span>
+                            Remember Me
+                        </label> </div> </div>
+
+          <a class="btn btn-link secondaryAction" href="{% url 'account_reset_password' %}">Forgot Password?</a>
+          <a class="btn btn-link secondaryAction" href="{% url 'account_signup' %}">Sign Up</a>
+          <button class="btn btn-bd-purple" type="submit">Sign In</button>
+        </form>
+          {% endif %}
+      </div>
+    </div>
+{% endblock %}

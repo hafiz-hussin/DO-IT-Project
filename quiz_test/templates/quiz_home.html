@@ -3,8 +3,7 @@
 
 
 {% block head %}
-<script src="{% static 'js/angular.min.js' %}"></script>   
-
+<script src="{% static 'js/angular.min.js' %}"></script>
 <script src="{% static 'js/my_scripts/app.js' %}"></script>                          
 <script src="{% static 'js/my_scripts/controllers/list_controller.js' %}"></script>            
 <script src="{% static 'js/my_scripts/controllers/quiz_controller.js' %}"></script> 
@@ -17,11 +16,12 @@
     {% verbatim %}
     <div ng-app="turtle_facts">
         <div class="container" style="text-align:center;" ng-app="turtle_facts">
-            <h2 class="title">Turtle Facts Quiz.</h2>
+            <h2 class="title">Tahukah Anda?</h2>
             <h3>
-                Learn all about the turtles before you decide to take on the test.
-                <strong>TURTLE QUIZ</strong>
+                Mari belajar perkara baru tentang teknologi sebelum mulakan tugasan anda.
+                <strong>Jom DO-IT</strong>
             </h3>
+
         </div>
         <hr/>
         <!-- Start of List Controller -->
@@ -35,9 +35,6 @@
                     </div>
                     <div class="col-lg-7 col-sm5"></div>
                     <div class="col-lg-2 col-sm3">
-                        <button class="btn btn-primary btn-round" ng-click="lc.activate_quiz()">
-                            <i class="material-icons">favorite</i> Start Quiz
-                        <div class="ripple-container"></div></button>
                     </div>
                 </div>
             </div>
@@ -49,10 +46,7 @@
                             
                             <div class="card-body">
                                 <h4 class="card-title">{{ d.turtle_type }}</h4>
-                                <p><strong>Locations:</strong>{{ d.locations }}</p>
-                                <p><strong>Size:</strong>{{ d.size }}</p>
-                                <p><strong>Average Lifespan:</strong>{{ d.lifespan }}</p>
-                                <p><strong>Diet:</strong>{{ d.diet }}</p>
+                                <p><strong>Jenis Teknologi:</strong>{{ d.locations }}</p>
                                 <a href="" class="btn btn-primary pull-right" 
                                 data-toggle="modal" 
                                 data-target="#turtle_info"
@@ -77,10 +71,7 @@
                                     <img ng-src="{{ lc.active_turtle.image_url }}" class="img-rounded img-responsive">
                                 </div>
                                 <div class="col-md-6">
-                                    <p><strong>Location:</strong>{{ lc.active_turtle.locations }}</p>
-                                    <p><strong>Size:</strong>{{ lc.active_turtle.size }}</p>
-                                    <p><strong>Average Lifespan:</strong>{{ lc.active_turtle.lifespan }}</p>
-                                    <p><strong>Diet:</strong>{{ lc.active_turtle.diet }}</p>
+                                    <p><strong>Jenis Teknologi:</strong>{{ lc.active_turtle.locations }}</p>
                                 </div>
                             </div>
                             <hr/>
@@ -92,11 +83,43 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12">
+                  <div class="card">
+                      <div class="card-header card-header-tabs card-header-primary">
+                          <div class="nav-tabs-navigation">
+                              <div class="nav-tabs-wrapper">
+                                  <span class="nav-tabs-title">Tugasan Baru:</span>
+                                  <ul class="nav nav-tabs" data-tabs="tabs">
+                                      <li class="nav-item active">
+                                          <a href="#profile" class="nav-link" data-toggle="tab">
+                                              <i class="material-icons">bug_report</i> Analisis Sentimen: Anda dikehendaki memilih sentimen yang sesuai berdasarkan ayat yang diberi.
+                                              Ganjaran untuk tugasan ini adalah RM 3.00
+                                              <div class="ripple-container"></div>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-body">
+                          <div class="tab-content">
+                              <div class="tab-pane active" id="profile"></div>
+                              <div class="col-lg-2 col-sm3">
+                                <button class="btn btn-primary btn-round" ng-click="lc.activate_quiz()">
+                                    <i class="material-icons">favorite</i> Mula
+                                    <div class="ripple-container"></div>
+                                </button>
+                             </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
             </div>
         </div>
         <!-- End of List Controller -->
@@ -171,7 +194,7 @@
 
             <!-- Display Correct Answers Section -->
             <!-- Progess Section -->
-            <div class="row" ng-show="qc.display_results">
+            <!--<div class="row" ng-show="qc.display_results">
                 <div class="col-sm-8">
                     <h4>Attempts:</h4>
                     <div class="btn-toolbar">
@@ -184,21 +207,21 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="row">
-                        <div class="col-sm-1" style="text-align:center;">                        
+                        <div class="col-sm-1" style="text-align:center;">
                             <h6>Correct:</h6>
                             <button class="btn btn-success">{{ qc.correctly_answered }}</button>
                         </div>
-                        <div class="col-sm-2"></div>                        
-                        <div class="col-sm-1" style="text-align:center;">                        
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-1" style="text-align:center;">
                             <h6>Wrong:</h6>
                             <button class="btn btn-danger">{{ quiz_data.length - qc.correctly_answered }}</button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!-- End Progess Section -->
             <div class="container" ng-show="qc.display_results">
-                <h3>Correct Answers:</h3>
+                <!---<h3>Correct Answers:</h3>
                 <div class="row">
                     <h4>{{ qc.active_question + 1 + ". " + quiz_data[qc.active_question].text }}</h4>
                     <br/>
@@ -209,10 +232,10 @@
                             {{ option.text }}
                         </button>
                     </div>
-                </div>
+                </div>--->
                 <div class="row">
-                    <div class="col-sm-4"><h2>Your Score is:-</h2></div>
-                    <div class="col-sm-8"><h2>{{ qc.correctly_answered }} / {{ quiz_data.length }}</h2></div>
+                    <div class="col-sm-4"><h2>Tahniah:-</h2></div>
+                    <div class="col-sm-8"><h2>RM 3.00 telah dikreditkan kedalam akaun DO-IT anda</h2></div>
                 </div>
             </div>
             <!-- Display Correct Answers Section -->            

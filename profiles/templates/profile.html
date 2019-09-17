@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{#    <div class="row ">#}
+{#        <div class="col-md-12">#}
+{#            <div class="overview-wrap">#}
+{#                <h2 class="title-1">My History</h2>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+     <div class="container" style="text-align:center;">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="overview-wrap">
+                    <h2 class="title-1">Akaun Saya</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-icon card-header-rose">
+                    <div class="card-icon">
+                      <i class="material-icons">cake</i>
+                    </div>
+                    <h4 class="card-title">Ganjaran Terkumpul Anda</h4>
+                      <h3 class="card-title">RM 80.20</h3>
+                  </div>
+                  <div class="card-body">
+                      <div class="container">
+                        <div class="row">
+                            <div class="col-lg-2 col-sm5"></div>
+                            <div class="col-lg-3 col-sm5"></div>
+                            <div class="col-lg-2 col-sm3">
+                                <button class="btn btn-primary btn-round">
+                                    <i class="material-icons">favorite</i> Cari Tugasan Baru
+                                    <a href="{% url 'quiz_home' %}" class="nav-link"></a>
+                                    <div class="ripple-container"></div>
+                                </button>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-12 m-t-25">
+            <div class="table-responsive-md m-md-auto">
+                <table class="table table-borderless table-striped table-data3 thread-light" style="text-align:center;">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th></th>
+                        <th>TUGASAN</th>
+                        <th>GANJARAN</th>
+                        <th>TARIKH TUGASAN</th>
+                    </tr>
+                    </thead>
+
+                    {% for history in histories %}
+                        <tr class="row-no-gutters" style="text-align:center;">
+                            <td>
+                                <div class="card-icon">
+                                    <i class="material-icons">check_box</i>
+                                </div>
+                            </td>
+                            <td>
+                                Anda telah lengkapkan tugasan analisis {{ history.qtype }}
+                            </td>
+                            <td>
+                                RM {{ history.reward }}
+                            </td>
+                            <td>
+                                {{ history.created_date }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                {% if histories.has_other_pages %}
+                    <nav>
+                        <ul class="pagination">
+                            {% if histories.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ histories.previous_page_number }}">&laquo;</a>
+                                </li>
+{#                            {% else %}#}
+{#                                <li class="page-item"><span>&laquo;</span></li>#}
+                            {% endif %}
+                            {% for i in histories.paginator.page_range %}
+                                {% if histories.number == i %}
+                                    <li class="page-item active">
+                                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if students.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ histories.next_page_number }}">&raquo;</a>
+                                </li>
+{#                            {% else %}#}
+{#                                <li class="page-item"><span>&raquo;</span></li>#}
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+
+            </div>
+        </div>
+        <div>
+
+
+	    	<p>Konsikan dengan rakan anda untuk dapatkan kredit percuma.</p>
+
+
+	    <a href="#" class="more-info btn btn-link"><span class="svgi icon-caret"></span>Kongsikan</a>
+	</div>
+    </div>
+{% endblock %}

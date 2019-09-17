@@ -1,8 +1,15 @@
+{% load staticfiles %}
 {% block nav %}
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" href="/presentation.html">Primary Color</a>
+                    <a class="navbar-brand" href="{% url 'test' %} " style=".navbar-header{
+   left: 50%;
+   position: relative;
+   transform: translateX(-50%);
+}">
+                         <img src="{% static 'img/logo9.png' %}" alt="Do-IT"/>
+                    </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     <span class="navbar-toggler-icon"></span>
@@ -11,20 +18,34 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'history' %}" class="nav-link">
+                            <i class="material-icons">account_circle</i> Akaun Saya
+                        </a>
+                    </li>
                     <li class="active nav-item">
-                        <a href="#pablo" class="nav-link">
-                            <i class="material-icons">explore</i> Discover
+                        <a href="{% url 'quiz_home' %}" class="nav-link">
+                            <i class="material-icons">explore</i> Tugas Baru
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#pablo" class="nav-link">
-                            <i class="material-icons">account_circle</i> Profile
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#pablo" class="nav-link">
-                            <i class="material-icons">settings</i> Settings
-                        </a>
+{#                    <li class="nav-item">#}
+{#                        <a href="{% url 'about' %}" class="nav-link">#}
+{#                            <i class="material-icons">contact_support</i> About#}
+{#                        </a>#}
+{#                    </li>#}
+                    <li class="nav-item dropdown label label-primary">
+                        <button href="#" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="true" >
+                            <b class="caret"></b>
+                            <i class="material-icons">settings_applications</i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            {% if not request.user.is_authenticated %}
+                          <li><a href="{% url 'account_login' %}">Login</a></li>
+                          <li><a href="{% url 'account_signup' %}">Signup</a></li>
+                            {% else %}
+                          <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                            {% endif %}
+                        </ul>
                     </li>
                 </ul>
             </div>

@@ -10,7 +10,9 @@ app.controller("quiz_controller", function($http, $scope, $q, manage_state, data
     
     this.quiz.get_quiz().then(function(response){
         $scope.quiz_data = response.data;
-        this.unanswerd_questions = $scope.quiz_data.length;     
+        console.log('inside controller');
+        console.log($scope.quiz_data);
+        this.unanswerd_questions = $scope.quiz_data.length;
     });
 
     this.active_question = 0;

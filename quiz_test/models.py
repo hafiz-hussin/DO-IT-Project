@@ -30,6 +30,12 @@ class Answer_Options(models.Model):
 
 class Quiz(models.Model):
     quiz_name = models.CharField(max_length=200)
+    image_url = models.ImageField(upload_to='question_pics/', default='img_1')
+    question_count = models.IntegerField(default=0)
+    question_type = models.CharField(max_length=100, default="this is type")
+    description = models.TextField(default="this is description")
+    quiz_reward = models.DecimalField(max_digits=10 ,decimal_places= 2, default=0.00)
+    quiz_statues = models.BooleanField(default=False)
 
     def __str__(self):
         return self.quiz_name

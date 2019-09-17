@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {{ user.username }}
+    {{ user.email }}
+
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="overview-wrap">
+                <h2 class="title-1">My History Hellowww</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row m-t-25">
+        <div class="col-lg-9">
+            <div class="table-responsive m-b-40">
+                <table class="table table-borderless table-striped table-data3">
+                    <thead>
+                    <tr>
+                        <th>TYPE</th>
+                        <th>TARIKH</th>
+                        <th>RM</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

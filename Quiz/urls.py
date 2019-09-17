@@ -36,7 +36,10 @@ urlpatterns = [
     re_path('^$', views.test, name="test"),
     path('admin/', admin.site.urls),
     path('quiz/', include('quiz_test.urls')),
+    re_path('^$', views.about, name="about"),
     re_path(r'^api-auth/', include('rest_framework.urls')),
+    re_path(r'^accounts/', include('allauth.urls')),
+    path('profile/', include('profiles.urls')),
 ]
 
 if settings.DEBUG:
